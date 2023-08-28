@@ -29,9 +29,9 @@ class Medio(enum.Enum):
 class Album(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     titulo = db.Column(db.String(128))
-    año = db.Column(db.Integer)
+    anio = db.Column(db.Integer)
     descripcion = db.Column(db.String(128))
     medio = db.Column(db.Enum(Medio))
 
     def __repr__(self):
-        return "{}-{}-{}-{}".format(self.titulo, self.año, self.descripcion, self.medio )
+        return "{}-{}-{}-{}".format(self.titulo, self.anio, self.descripcion, self.medio )
