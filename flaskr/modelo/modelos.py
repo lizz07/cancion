@@ -14,11 +14,11 @@ class Cancion(db.Model):
 
 class Usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    nombre_usuario = db.Column(db.String(128))
+    nombre = db.Column(db.String(128))
     contrasena = db.Column(db.String(128))
 
     def __repr__(self):
-        return "{}-{}".format(self.nombre_usuario, self.contrasena)
+        return "{}-{}".format(self.nombre, self.contrasena)
 
 class Medio(enum.Enum):
     DISCO = 1
