@@ -17,7 +17,7 @@ with app.app_context():
 
 # Prueba 2
 with app.app_context():
-    u = Usuario(nombre_usuario='lizz07', contrasena='200469')
+    u = Usuario(nombre='lizz07', contrasena='200469')
     db.session.add(u)
     db.session.commit()
     print(Usuario.query.all())
