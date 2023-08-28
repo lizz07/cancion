@@ -24,7 +24,7 @@ with app.app_context():
 
 # Prueba 3
 with app.app_context():
-    a = Album(titulo='Álbum de Prueba', año=2023, descripcion='musica regge', medio=Medio.DISCO)
+    a = Album(titulo='Álbum de Prueba', anio=2023, descripcion='musica regge', medio=Medio.DISCO)
     db.session.add(a)
     db.session.commit()
     print(Album.query.all())
