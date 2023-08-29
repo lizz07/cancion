@@ -1,9 +1,10 @@
 from flask_restful import Resource
-from ..modelos import db, Cancion, CancionSchema
+from ..modelos import db, Cancion, CancionSchema, Usuario, UsuarioSchema, Album, AlbumSchema, Medio, EnumADiccionario
 from flask import request
 
 cancion_shema = CancionSchema()
-
+usuario_shema= UsuarioSchema()
+album_shema= AlbumSchema()
 #new
 class vista_canciones(Resource):
 
@@ -44,3 +45,80 @@ class vista_cancion(Resource):
         db.session.delete(cancion)
         db.session.commit()
         return 'operacion exitosa',204
+
+
+class vista_usuarios(Resource):
+
+    def get(self):
+        return[usuario_shema.dump(Usuario) for Usuario in Usuario.query.all()]
+
+    def post(self):
+        nuevo_usuario = Usuario(nombre=request.json['nombre'],\
+                                contrasena=request.json['contrasena'])
+
+
+        db.session.add(nuevo_usuario)
+        db.session.commit()
+        return usuario_shema.dump(nuevo_usuario)
+
+
+class vista_usuario(Resource):
+
+    def get(self, id):
+        return usuario_shema.dump(Usuario.query.get_or_404(id))
+
+    def put(self, id):
+        usuario = Usuario.query.get_or_404(id)
+        usuario.nombre = request.json.get('nombre',usuario.titulo)
+        usuario.contrasena = request.json.get('contrasena', usuario.minutos)
+
+        db.session.commit()
+        return usuario_shema.dump(usuario)
+
+
+    def delete(self, id):
+        usuario = Usuario.query.get_or_404(id)
+
+        db.session.delete(usuario)
+        db.session.commit()
+        return 'operacion exitosa',204
+
+class vista_albumes(Resource):
+
+    def get(self):
+        return[album_shema.dump(Album) for Album in Album.query.all()]
+
+    def post(self):
+        nuevo_album = Album(titulo=request.json['titulo'],\
+                            anio=request.json['anio'],\
+                            descripcion=request.json['descripcion'],\
+                            medio=request.json['medio'])
+
+        db.session.add(nuevo_album)
+        db.session.commit()
+        return cancion_shema.dump(nuevo_album)
+
+class vista_album(Resource):
+
+    def get(self, id):
+        return album_shema.dump(Album.query.get_or_404(id))
+
+    def put(self, id):
+        album = Album.query.get_or_404(id)
+        album.titulo = request.json.get('titulo',album.titulo)
+        album.anio = request.json.get('anio', album.anio)
+        album.descripcion = request.json.get('descripcion', album.descripcion)
+        album.medio = request.json.get('medio', album.medio)
+
+
+        db.session.commit()
+        return album_shema.dump(album)
+
+
+    def delete(self, id):
+        usuario = Usuario.query.get_or_404(id)
+
+        db.session.delete(usuario)
+        db.session.commit()
+        return 'operacion exitosa',204
+
