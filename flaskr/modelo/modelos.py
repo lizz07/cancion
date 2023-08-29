@@ -19,7 +19,7 @@ class Album(db.Model):
     canciones = db.relationship('Cancion',secondary='album_cancion', back_populates='id_Album')
 
 class Cancion(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key=True)
     titulo = db.Column(db.String(128))
     minutos = db.Column(db.Integer)
     segundos = db.Column(db.Integer)
