@@ -6,4 +6,4 @@
 https://prezi.com/view/viuckmgOjUEHzc7JiVe3/
 
 #ahora explica con tus palabras que hizo la serialización en esta actividad:
-Rta= yo creo que cambio el formato a json
+Rta= yo creo que cambio el formato que recibe o envia los datos a formato json
