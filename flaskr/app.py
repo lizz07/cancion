@@ -15,6 +15,7 @@ with app.app_context():
     a = Album(titulo='prueba', anio=1999, descripcion='texto', medio=Medio.CD)
     a.canciones.append(c)
     u.albumes.append(a)
+    db.session.add(a)
     db.session.add(u)
     db.session.commit()
     print(Usuario.query.all())
@@ -22,3 +23,4 @@ with app.app_context():
     db.session.delete(u)
     print(Usuario.query.all())
     print(Album.query.all())
+    print(Cancion.query.all())
